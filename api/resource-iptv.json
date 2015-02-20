@@ -1,0 +1,12 @@
+{
+  "/channel": {
+    "script" : "iptv",
+    "methods": ["get"],
+    "types"  : ["m3u8"]
+  },
+  "/epg": {
+    "script" : "iptv",
+    "methods": ["get"],
+    "types"  : ["xml"]
+  }
+}
