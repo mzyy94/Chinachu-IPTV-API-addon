@@ -17,6 +17,19 @@
 			return;
 		/* epg.xml */
 		case 'xml': // epg xmltv
+			var tz = new Date().toString().replace(/^.*GMT([+-]\d{4}).*$/,' $1');
+			function getTimeString(sec) {
+				var date = new Date(sec);
+				var yyyy = date.getFullYear();
+				var MM = ('0' + (date.getMonth()+1)).slice(-2);
+				var dd = ('0' + date.getDate()).slice(-2);
+				var HH = ('0' + date.getHours()).slice(-2);
+				var mm = ('0' + date.getMinutes()).slice(-2);
+				var ss = ('0' + date.getSeconds()).slice(-2);
+				
+				return '' + yyyy + MM + dd + HH + mm + ss + tz;
+			}
+			
 			response.head(200);
 			
 			response.write('<?xml version="1.0" encoding="UTF-8"?>\n');
@@ -28,9 +41,7 @@
 				response.write('    <service_id>' + ch.sid + '</service_id>\n');
 				response.write('  </channel>\n');
 				ch.programs.forEach(function(prog) {
-					var startDate = new Date(prog.start).toISOString().replace(/([-T:]|\..*$)/g,'');
-					var endDate = new Date(prog.end).toISOString().replace(/([-T:]|\..*$)/g,'');
-					response.write('  <programme start="' + startDate + ' +0000" stop="' + endDate + ' +0000" channel="' + prog.channel.id + '" event_id="' + prog.id + '">\n');
+					response.write('  <programme start="' + getTimeString(prog.start) + '" stop="' + getTimeString(prog.end) + '" channel="' + prog.channel.id + '" event_id="' + prog.id + '">\n');
 					response.write('    <title lang="ja_JP">' + prog.fullTitle.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g, '&amp;') + '</title>\n');
 					response.write('    <desc lang="ja_JP">' + prog.detail.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g, '&amp;') + '</desc>\n');
 					response.write('    <category lang="ja_JP">' + prog.category + '</category>\n');
