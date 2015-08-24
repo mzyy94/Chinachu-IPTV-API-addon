@@ -10,7 +10,12 @@
 			response.write('#EXTM3U\n');
 			data.schedule.forEach(function(ch) {
 				response.write('#EXTINF:-1 tvg-id="' + ch.id + '",' + ch.name + '\n');
-				response.write(protocol + '://' + request.headers.host + '/api/channel/' + ch.id + '/watch.m2ts?ext=m2ts&c%3Av=copy&c%3Aa=copy\n');
+                                // Pass BASIC authentication
+                                if (!!config.wuiUsers && config.wuiUsers.length > 0) {
+                                        response.write(protocol + '://' + config.wuiUsers[0] + '@' + request.headers.host + '/api/channel/' + ch.id + '/watch.m2ts?ext=m2ts&c%3Av=copy&c%3Aa=copy\n');
+                                } else {
+                                        response.write(protocol + '://' + request.headers.host + '/api/channel/' + ch.id + '/watch.m2ts?ext=m2ts&c%3Av=copy&c%3Aa=copy\n');
+                                }
 			});
 			
 			response.end();
