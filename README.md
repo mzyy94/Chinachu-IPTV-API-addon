@@ -1,7 +1,7 @@
 # :warning: *DEPRECATION WARNING* :warning:
 
 __This project will not be maintained any longer.__
-__Please use [pvr.chinachu](https://github.com/mzyy94/pvr.chinachu) instead.__
+__Please use [pvr.chinachu](https://github.com/Harekaze/pvr.chinachu) instead.__
 
 -----
 
