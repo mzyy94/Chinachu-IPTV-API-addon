@@ -1,7 +1,9 @@
-# DEPRECATION WARNING
+# :warning: *DEPRECATION WARNING* :warning:
 
-This project will not be maintained any longer.
-Please use [pvr.chinachu](https://github.com/mzyy94/pvr.chinachu) instead.
+__This project will not be maintained any longer.__
+__Please use [pvr.chinachu](https://github.com/mzyy94/pvr.chinachu) instead.__
+
+-----
 
 # Chinachu-IPTV-API-addon
 Additional API for Chinachu use from Simple IPTV Client
